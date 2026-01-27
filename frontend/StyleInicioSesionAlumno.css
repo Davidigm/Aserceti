@@ -1,0 +1,213 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sauce', sans-serif;
+}
+
+body{
+    height: 100vh;
+}
+
+/* Barra superior */
+.BarraSuperior{
+    width: 100%;
+    height: 122px;
+    background-color: #611232;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+}
+
+.logo{
+    height: 80px;
+}
+
+/* Sección principal */
+.login-main{
+    display: flex;
+    height: calc(100vh - 122px);
+}
+
+/* Imagen izquierda */
+.login-image{
+    width: 100%;
+    max-width: 900px;
+    min-width: 300px;
+    position: relative;
+
+    background-image: url('recursos/fondo_ceti_login.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    filter: grayscale(100%);
+}
+
+/* Texto sobre la imagen */
+.image-title{
+    position: absolute;
+    top: 8%;
+
+    left: 130%;                 /* desplazado hacia el panel gris */
+    transform: translateX(-50%);
+
+    width: 80%;
+    height: 84px;
+
+    background-color: rgba(0,0,0,0.8);
+    color: #FFFFFF;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Open Sauce', sans-serif;
+    font-size: 26px;
+}
+
+
+
+/* CONTENEDOR DERECHO */
+.login-right{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CUADRO GRIS */
+.login-container{
+    background-color: #a6a6a6;
+    width: 646px;
+    height: 492px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* TÍTULO */
+.login-title{
+    background-color: rgba(0,0,0,0.8);
+    color: #FFFFFF;
+    width: 80%;
+    text-align: center;
+    padding: 15px 0;
+    margin-bottom: 30px;
+}
+
+/* FORM */
+form{
+    width: 80%;
+}
+
+.form-group{
+    display: flex;
+    align-items: center;
+    gap: 10px;          /* casi pegados */
+    margin-bottom: 18px;
+}
+.form-group::after{
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a6a6a6;
+    pointer-events: none;
+}
+label{
+    min-width: 90px;   /* control del alineado */
+    color: #FFFFFF;
+}
+/* INPUTS */
+input{
+    width: 175px;
+    height: 49px;
+    background-color: #737373;
+    border: none;
+    color: #a6a6a6;
+    padding-left: 10px;
+}
+
+/* BOTÓN */
+button{
+    width: 175px;
+    height: 49px;
+    background-color: #737373;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #545454;
+}
+
+/* LINK */
+.login-link{
+    margin-top: 20px;
+    color: #004aad;
+    text-decoration: underline;
+    font-family: 'Poppins', sans-serif;
+}
+
+input{
+    width: 175px;
+    height: 49px;
+    background-color: #737373;
+    border: none;
+    padding-left: 10px;
+    color: #FFFFFF;
+}
+
+input::placeholder{
+    color: #a6a6a6;
+}
+
+.nivel-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nivel-container span{
+    color: #a6a6a6;
+    font-size: 14px;
+}
+
+.nivel-container input[type="radio"]{
+    width: auto;
+    height: auto;
+}
+
+select{
+    width: 175px;
+    height: 49px;
+
+    background-color: #737373;
+    border: none;
+    padding-left: 10px;
+
+    color: #a6a6a6;
+    font-size: 14px;
+
+    /* Quitar estilo nativo */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    cursor: pointer;
+}
+
+/* Cambiar color cuando ya hay opción elegida */
+select:valid{
+    color: #FFFFFF;
+}
+
+/* Opciones */
+select option{
+    background-color: #737373;
+    color: #FFFFFF;
+}

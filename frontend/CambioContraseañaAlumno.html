@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión - Alumno</title>
+    <link rel="stylesheet" href="StyleInicioSesionAlumno.css">
+    <script src="CambioContraseñaAlumno.js" defer></script>
+</head>
+<body>
+
+<header class="BarraSuperior">
+    <img src="recursos/GobiernoDeMExico.png" alt="Gobierno de México" class="logo">
+</header>
+
+<main class="login-main">
+
+    <div class="login-image">
+        <div class="image-title">
+            Control de asesorías alumno
+        </div>
+    </div>
+
+    <div class="login-right">
+        <div class="login-container">
+
+            <div class="login-title">
+                Iniciar Sesión Alumno
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" placeholder="Usuario" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" placeholder="Contraseña" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Semestre</label>
+                    <input type="number" placeholder="Semestre" min="1" max="8" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Nivel</label>
+
+                    <div class="nivel-container">
+                        <span id="nivelTexto">Tecnólogo</span>
+
+                        <input type="radio" name="nivel" id="ingeniero" value="Ingeniero" checked>
+                        <label for="tecnologo">Tecnólogo</label>
+                        <input type="radio" name="nivel" id="tecnologo" value="Tecnólogo" checked>
+                        <label for="ingeniero">Ingeniero</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="Carrera">Carrera</label>
+                    <select id="Carrera" name="Carrera" required>
+                        <option value="" disabled selected>Seleccione carrera</option>
+                        <option value="Desarrollo-de-Software">Desarrollo de Software</option>
+                        <option value="Control-Automatico">Control Automático</option>
+                        <option value="Construccion">Construcción</option>
+                        <option value="Quimico-en-farmacos">Químico en fármacos</option>
+                        <option value="Sistemas-Electronicos-y-Telecomunicaciones">
+                            Sistemas Electrónicos y Telecomunicaciones
+                        </option>
+                        <option value="Diseño-y-mecanica-industrial">Diseño y mecánica industrial</option>
+                        <option value="Electromecanica">Electromecánica</option>
+                    </select>
+                </div>
+
+
+
+                <button type="submit">Entrar</button>
+            </form>
+
+            <a href="InicioDeSesionAlumno.html" class="login-link">¿Ya tienes una cuenta?</a>
+
+        </div>
+    </div>
+
+</main>
+
+
+
+</body>
+</html>
