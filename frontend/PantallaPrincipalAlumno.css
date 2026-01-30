@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    background-color: #e3dddc;
+}
+
+/* Contenedor general */
+.contenedor-principal {
+    display: flex;
+    height: 100vh;
+}
+
+/* Menú lateral */
+.menu-lateral {
+    width: 288px;
+    background-color: #737373;
+    padding: 20px;
+}
+
+.perfil {
+    background-color: #aaaeae;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.menu-opciones {
+    list-style: none;
+}
+
+.menu-opciones li {
+    background-color: #545454;
+    color: #ffffff;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Contenido central */
+.contenido {
+    flex: 1;
+    padding: 30px;
+}
+
+/* Título */
+.titulo {
+    background-color: #000000;
+    color: #ffffff;
+    width: 814.9px;
+    height: 84.2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Horario */
+.horario {
+    background-color: #f0e9eb;
+    padding: 20px;
+    width: 814.9px;
+    margin-bottom: 20px;
+}
+
+.horario p {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #e3dddc;
+    padding: 8px;
+}
+
+td {
+    height: 40px;
+    border: 1px solid #a6a6a6;
+}
+
+/* Botón */
+.btn-solicitar {
+    width: 174.8px;
+    height: 49.3px;
+    background-color: #545454;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+}
+
+/* Panel derecho */
+.panel-derecho {
+    width: 492.1px;
+    background-color: #a6a6a6;
+}

@@ -31,53 +31,59 @@
             <form id="loginForm">
                 <div class="form-group">
                     <label>Usuario</label>
-                    <input type="text" placeholder="Usuario" required>
+                    <input 
+                        type="text"
+                        id="usuario"
+                        pattern="[0-9]{8}"
+                        maxlength="8"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Nombre
+                    </label>
+                    <input type="text" id="nombre" required>
                 </div>
 
                 <div class="form-group">
                     <label>Contraseña</label>
-                    <input type="password" placeholder="Contraseña" required>
+                    <input type="password" id="password" required>
                 </div>
 
                 <div class="form-group">
                     <label>Semestre</label>
-                    <input type="number" placeholder="Semestre" min="1" max="8" required>
+                    <input type="number" id="semestre" min="1" max="8" required>
                 </div>
 
                 <div class="form-group">
                     <label>Nivel</label>
-
                     <div class="nivel-container">
-                        <span id="nivelTexto">Tecnólogo</span>
-
-                        <input type="radio" name="nivel" id="ingeniero" value="Ingeniero" checked>
-                        <label for="tecnologo">Tecnólogo</label>
                         <input type="radio" name="nivel" id="tecnologo" value="Tecnólogo" checked>
+                        <label for="tecnologo">Tecnólogo</label>
+
+                        <input type="radio" name="nivel" id="ingeniero" value="Ingeniero">
                         <label for="ingeniero">Ingeniero</label>
                     </div>
                 </div>
 
-
                 <div class="form-group">
-                    <label for="Carrera">Carrera</label>
-                    <select id="Carrera" name="Carrera" required>
+                    <label>Carrera</label>
+                    <select id="carrera" required>
                         <option value="" disabled selected>Seleccione carrera</option>
                         <option value="Desarrollo-de-Software">Desarrollo de Software</option>
                         <option value="Control-Automatico">Control Automático</option>
                         <option value="Construccion">Construcción</option>
                         <option value="Quimico-en-farmacos">Químico en fármacos</option>
-                        <option value="Sistemas-Electronicos-y-Telecomunicaciones">
-                            Sistemas Electrónicos y Telecomunicaciones
-                        </option>
-                        <option value="Diseño-y-mecanica-industrial">Diseño y mecánica industrial</option>
+                        <option value="Sistemas-Electronicos-y-Telecomunicaciones">SET</option>
+                        <option value="Diseño-y-mecanica-industrial">DMI</option>
                         <option value="Electromecanica">Electromecánica</option>
                     </select>
                 </div>
 
-
-
                 <button type="submit">Entrar</button>
             </form>
+
 
             <a href="InicioDeSesionAlumno.html" class="login-link">¿Ya tienes una cuenta?</a>
 
