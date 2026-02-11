@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Evalúa el asesor</title>
+  <link rel="stylesheet" href="opinion.css">
+</head>
+<body>
+
+<div class="contenedor">
+  <h2>Evalúa el asesor</h2>
+
+  <form id="formOpinion">
+
+    <div class="pregunta">
+      <span>Puntualidad del asesor</span>
+      <div class="estrellas" data-name="p1"></div>
+    </div>
+
+    <div class="pregunta">
+      <span>Actitud del asesor</span>
+      <div class="estrellas" data-name="p2"></div>
+    </div>
+
+    <div class="pregunta">
+      <span>Aptitud del asesor</span>
+      <div class="estrellas" data-name="p3"></div>
+    </div>
+
+    <div class="pregunta">
+      <span>Claridad de explicación</span>
+      <div class="estrellas" data-name="p4"></div>
+    </div>
+
+    <div class="pregunta">
+      <span>Organización</span>
+      <div class="estrellas" data-name="p5"></div>
+    </div>
+
+    <div class="pregunta">
+      <span>¿Te ayudó la asesoría a entender?</span>
+      <div class="estrellas" data-name="p6"></div>
+    </div>
+
+    <textarea id="descripcion" placeholder="Comentarios u Opiniones" maxlength="40"></textarea>
+
+    <button type="submit">Enviar</button>
+  </form>
+</div>
+
+<script src="opinion.js"></script>
+</body>
+</html>

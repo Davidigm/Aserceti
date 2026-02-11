@@ -1,0 +1,62 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #eaeaea;
+}
+
+.contenedor {
+  width: 400px;
+  margin: 30px auto;
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+h2 {
+  text-align: center;
+  background: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.pregunta {
+  background: #bcbcbc;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.estrellas span {
+  font-size: 22px;
+  cursor: pointer;
+  color: #777;
+}
+
+.estrellas span.activa {
+  color: #333;
+}
+
+textarea {
+  width: 100%;
+  height: 80px;
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  resize: none;
+}
+
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  background: #777;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
