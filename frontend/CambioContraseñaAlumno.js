@@ -21,6 +21,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     fetch('http://localhost:3000/registro-alumno', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({
             usuario,
             nombre,

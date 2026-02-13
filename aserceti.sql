@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-02-2026 a las 01:58:07
+-- Tiempo de generación: 13-02-2026 a las 02:22:25
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,17 +54,18 @@ CREATE TABLE `alumno` (
   `Grado` int(1) NOT NULL,
   `NivelAca` varchar(40) NOT NULL,
   `Estatus_Academico` varchar(40) NOT NULL,
-  `id_usuario` int(8) NOT NULL
+  `id_usuario` int(8) NOT NULL,
+  `id_carrera` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `alumno`
 --
 
-INSERT INTO `alumno` (`Registro`, `Carrera`, `Grado`, `NivelAca`, `Estatus_Academico`, `id_usuario`) VALUES
-(1001, 'Ingeniería en Sistemas', 2, 'Licenciatura', 'Regular', 1),
-(1002, 'Ingeniería Industrial', 1, 'Licenciatura', 'Regular', 5),
-(1003, 'Ingeniería en Sistemas', 3, 'Licenciatura', 'Irregular', 1);
+INSERT INTO `alumno` (`Registro`, `Carrera`, `Grado`, `NivelAca`, `Estatus_Academico`, `id_usuario`, `id_carrera`) VALUES
+(1001, 'Ingeniería en Sistemas', 2, 'Licenciatura', 'Regular', 1, NULL),
+(1002, 'Ingeniería Industrial', 1, 'Licenciatura', 'Regular', 5, 1),
+(1003, 'Ingeniería en Sistemas', 3, 'Licenciatura', 'Irregular', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -116,6 +117,26 @@ INSERT INTO `asesoria` (`id_asesoria`, `id_horario`, `tema`, `estado`, `obligato
 (1, 1, 'Álgebra básica', 1, 0, 1001, 2001, 1, 1),
 (2, 3, 'Cinemática', 1, 1, 1002, 2002, 3, 2),
 (3, 4, 'Consultas SQL', 1, 0, 1003, 2003, 4, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `carrera`
+--
+
+CREATE TABLE `carrera` (
+  `id_carrera` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `carrera`
+--
+
+INSERT INTO `carrera` (`id_carrera`, `nombre`) VALUES
+(1, 'Desarrollo de Software'),
+(2, 'Electrónica Industrial'),
+(3, 'Mecatrónica');
 
 -- --------------------------------------------------------
 
@@ -215,18 +236,19 @@ CREATE TABLE `materia` (
   `id_materia` int(8) NOT NULL,
   `nombre` varchar(40) NOT NULL,
   `division` varchar(40) NOT NULL,
-  `nivel` int(20) NOT NULL
+  `nivel` int(20) NOT NULL,
+  `id_carrera` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `materia`
 --
 
-INSERT INTO `materia` (`id_materia`, `nombre`, `division`, `nivel`) VALUES
-(1, 'Matemáticas', 'Ingeniería', 1),
-(2, 'Programación', 'Ingeniería', 2),
-(3, 'Física', 'Ingeniería', 1),
-(4, 'Bases de Datos', 'Ingeniería', 3);
+INSERT INTO `materia` (`id_materia`, `nombre`, `division`, `nivel`, `id_carrera`) VALUES
+(1, 'Matemáticas', 'Ingeniería', 1, NULL),
+(2, 'Programación', 'Ingeniería', 2, 1),
+(3, 'Física', 'Ingeniería', 1, NULL),
+(4, 'Bases de Datos', 'Ingeniería', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -360,7 +382,8 @@ ALTER TABLE `administrador`
 --
 ALTER TABLE `alumno`
   ADD PRIMARY KEY (`Registro`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `fk_alumno_carrera` (`id_carrera`);
 
 --
 -- Indices de la tabla `asesor`
@@ -381,6 +404,12 @@ ALTER TABLE `asesoria`
   ADD KEY `id_horario` (`id_horario`),
   ADD KEY `id_materia` (`id_materia`),
   ADD KEY `id_solicitud` (`id_solicitud`);
+
+--
+-- Indices de la tabla `carrera`
+--
+ALTER TABLE `carrera`
+  ADD PRIMARY KEY (`id_carrera`);
 
 --
 -- Indices de la tabla `casoespecial`
@@ -412,7 +441,8 @@ ALTER TABLE `listaespera`
 -- Indices de la tabla `materia`
 --
 ALTER TABLE `materia`
-  ADD PRIMARY KEY (`id_materia`);
+  ADD PRIMARY KEY (`id_materia`),
+  ADD KEY `fk_materia_carrera` (`id_carrera`);
 
 --
 -- Indices de la tabla `opinion`
@@ -450,6 +480,16 @@ ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`);
 
 --
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `carrera`
+--
+ALTER TABLE `carrera`
+  MODIFY `id_carrera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -463,7 +503,8 @@ ALTER TABLE `administrador`
 -- Filtros para la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  ADD CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+  ADD CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  ADD CONSTRAINT `fk_alumno_carrera` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id_carrera`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `asesor`
@@ -493,6 +534,12 @@ ALTER TABLE `casoespecial`
 --
 ALTER TABLE `comentario`
   ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`id_opinion`) REFERENCES `opinion` (`id_opinion`);
+
+--
+-- Filtros para la tabla `materia`
+--
+ALTER TABLE `materia`
+  ADD CONSTRAINT `fk_materia_carrera` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id_carrera`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `opinion`

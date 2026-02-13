@@ -6,20 +6,18 @@ document.getElementById('login-alumno').addEventListener('submit', function (e) 
     
 
     fetch('http://localhost:3000/login-alumno', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            usuario,
-            password
-        })
-    })
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    credentials: 'include', // <--- ESTO ES VITAL
+    body: JSON.stringify({ usuario, password })
+})
     .then(res => res.json())
     .then(data => {
         if (data.success) {
             alert('Inicio de sesión correcto ✅');
-            window.location.href = 'PantallaPrincipalAlumno.html';
+            window.location.href = 'SolicitarAsesoriaAlumno.html';
         } else {
             alert(data.message);
         }
