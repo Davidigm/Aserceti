@@ -119,6 +119,78 @@ app.get('/seleccionarMateria', async (req, res) => {
     }
 });
 
+// Registrar opinión de asesoría
+app.post('/opiniones', async (req, res) => {
+    const userId = req.session.userId; // ID del usuario logueado
+    const { estrellas, descripcion, id_asesoria } = req.body;
+
+    if (!userId) {
+        return res.status(401).json({
+            success: false,
+            message: 'No autorizado'
+        });
+    }
+
+    if (!estrellas || !id_asesoria) {
+        return res.json({
+            success: false,
+            message: 'Datos incompletos'
+        });
+    }
+
+    try {
+        // Obtener registro del alumno
+        const [alumno] = await db.query(
+            `SELECT Registro FROM alumno WHERE id_usuario = ?`,
+            [userId]
+        );
+
+        if (alumno.length === 0) {
+            return res.json({
+                success: false,
+                message: 'Alumno no encontrado'
+            });
+        }
+
+        const registro = alumno[0].Registro;
+
+        // Verificar si ya opinó
+        const [existe] = await db.query(
+            `SELECT id_opinion 
+             FROM opiniones 
+             WHERE registro = ? AND id_asesoria = ?`,
+            [registro, id_asesoria]
+        );
+
+        if (existe.length > 0) {
+            return res.json({
+                success: false,
+                message: 'Ya registraste una opinión para esta asesoría'
+            });
+        }
+
+        // Insertar opinión
+        await db.query(
+            `INSERT INTO opiniones 
+             (estrellas, descripcion, registro, id_asesoria)
+             VALUES (?, ?, ?, ?)`,
+            [estrellas, descripcion || '', registro, id_asesoria]
+        );
+
+        res.json({
+            success: true,
+            message: 'Opinión registrada correctamente'
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Error en el servidor'
+        });
+    }
+});
+
 // Iniciar servidor en puerto 3000
 app.listen(3000, () => {
     console.log('🚀 Servidor corriendo en http://localhost:3000');
